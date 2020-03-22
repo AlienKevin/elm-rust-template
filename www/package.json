@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/rustwasm/create-wasm-app#readme",
   "dependencies": {
-    "elm_rust_template": "file:../pkg"
+    "{{project-name}}": "file:../pkg"
   },
   "devDependencies": {
     "chokidar-cli": "^2.1.0",
