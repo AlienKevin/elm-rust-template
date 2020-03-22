@@ -1,4 +1,4 @@
-import * as wasm from "elm_rust_template";
+import * as wasm from "{{project-name}}";
 import "./elm.js"
 
 var app = Elm.Main.init({ node: document.querySelector('main') });
