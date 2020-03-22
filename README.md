@@ -103,6 +103,9 @@ Follow all the previous steps outlined in deployment instructions. Then push the
 git subtree push --prefix www/dist origin gh-pages
 ```
 
+# Examples using elm-rust-template
+[Hack Assembler](https://github.com/AlienKevin/hack-assembler-web): An assembler for the Hack assembly language
+
 # Credits
 Template and README adapted from [The Rust and Wasm Book](https://rustwasm.github.io/docs/book/introduction.html). Github Pages deployment instruction from [gh-pages-deploy](https://gist.github.com/cobyism/4730490)
 
