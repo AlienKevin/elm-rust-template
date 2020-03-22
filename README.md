@@ -1,69 +1,110 @@
-<div align="center">
+# elm-rust-template
 
-  <h1><code>wasm-pack-template</code></h1>
+A convenient template for combining Elm and Rust in the front end.
 
-  <strong>A template for kick starting a Rust and WebAssembly project using <a href="https://github.com/rustwasm/wasm-pack">wasm-pack</a>.</strong>
+# Set up
+## The Rust Toolchain
+You will need the standard Rust toolchain, including rustup, rustc, and cargo.
 
-  <p>
-    <a href="https://travis-ci.org/rustwasm/wasm-pack-template"><img src="https://img.shields.io/travis/rustwasm/wasm-pack-template.svg?style=flat-square" alt="Build Status" /></a>
-  </p>
+[Follow these instructions to install the Rust toolchain.](https://www.rust-lang.org/tools/install)
 
-  <h3>
-    <a href="https://rustwasm.github.io/docs/wasm-pack/tutorials/npm-browser-packages/index.html">Tutorial</a>
-    <span> | </span>
-    <a href="https://discordapp.com/channels/442252698964721669/443151097398296587">Chat</a>
-  </h3>
+## wasm-pack
+wasm-pack is your one-stop shop for building, testing, and publishing Rust-generated WebAssembly.
 
-  <sub>Built with 🦀🕸 by <a href="https://rustwasm.github.io/">The Rust and WebAssembly Working Group</a></sub>
-</div>
+[Get wasm-pack here!](https://rustwasm.github.io/wasm-pack/installer/)
 
-## About
+## cargo-generate
+cargo-generate helps you get up and running quickly with a new Rust project by leveraging a pre-existing git repository as a template.
 
-[**📚 Read this template tutorial! 📚**][template-docs]
-
-This template is designed for compiling Rust libraries into WebAssembly and
-publishing the resulting package to NPM.
-
-Be sure to check out [other `wasm-pack` tutorials online][tutorials] for other
-templates and usages of `wasm-pack`.
-
-[tutorials]: https://rustwasm.github.io/docs/wasm-pack/tutorials/index.html
-[template-docs]: https://rustwasm.github.io/docs/wasm-pack/tutorials/npm-browser-packages/index.html
-
-## 🚴 Usage
-
-### 🐑 Use `cargo generate` to Clone this Template
-
-[Learn more about `cargo generate` here.](https://github.com/ashleygwilliams/cargo-generate)
-
+Install cargo-generate with this command:
 ```
-cargo generate --git https://github.com/rustwasm/wasm-pack-template.git --name my-project
-cd my-project
+cargo install cargo-generate
 ```
 
-### 🛠️ Build with `wasm-pack build`
+## npm
+npm is a package manager for JavaScript. We will use it to install and run a JavaScript bundler and development server. At the end of the tutorial, we will publish our compiled .wasm to the npm registry.
 
+[Follow these instructions to install npm.](https://www.npmjs.com/get-npm)
+
+If you already have npm installed, make sure it is up to date with this command:
+
+```
+npm install npm@latest -g
+```
+
+# Usage
+
+## Clone this template
+```
+cargo generate --git https://github.com/AlienKevin/elm-rust-template
+```
+This should prompt you for the new project's name.
+
+## Build Rust into WebAssembly
+In the project root:
 ```
 wasm-pack build
 ```
 
-### 🔬 Test in Headless Browsers with `wasm-pack test`
-
+## Install web dependencies
+First, you need to be in the `www` directory:
 ```
-wasm-pack test --headless --firefox
+cd www
 ```
-
-### 🎁 Publish to NPM with `wasm-pack publish`
-
+Then install all npm dependencies:
 ```
-wasm-pack publish
+npm install
 ```
 
-## 🔋 Batteries Included
+## Serve locally for development
+In the `www` directory.
 
-* [`wasm-bindgen`](https://github.com/rustwasm/wasm-bindgen) for communicating
-  between WebAssembly and JavaScript.
-* [`console_error_panic_hook`](https://github.com/rustwasm/console_error_panic_hook)
-  for logging panic messages to the developer console.
-* [`wee_alloc`](https://github.com/rustwasm/wee_alloc), an allocator optimized
-  for small code size.
+Watch for Elm file changes:
+```
+npm run watch
+```
+Open another terminal and spin up a dev server using webpack:
+```
+npm run start
+```
+Navigate your Web browser to http://localhost:8080/ and you should see the default page.
+
+Anytime you make changes and want them reflected on http://localhost:8080/, just **re-run** the `wasm-pack build` command within the root directory.
+
+## Deploy for a new release
+In the root directory.
+
+Create an optimized release build from Rust to WebAssembly.
+```
+wasm-pack build --release
+```
+In the `www` directory.
+
+Bundle, optimize, and minimize all JavaScript and Elm for smaller asset size and faster speed.
+```
+npm run build
+```
+Now you should see a `dist` folder within `www` similar to this:
+```
+www
+├── ...
+├── dist
+    ├── 0.bootstrap.js
+    ├── 1.bootstrap.js
+    ├── 27911fde1b082c3d4.module.wasm
+    ├── bootstrap.js
+    ├── index.html
+├── ...
+```
+
+## Publish to Github Pages
+Follow all the previous steps outlined in deployment instructions. Then push the `www/dist` folder to the `gh-pages` branch on GitHub.
+```
+git subtree push --prefix www/dist origin gh-pages
+```
+
+# Credits
+Template and README adapted from [The Rust and Wasm Book](https://rustwasm.github.io/docs/book/introduction.html). Github Pages deployment instruction from [gh-pages-deploy](https://gist.github.com/cobyism/4730490)
+
+# License
+MIT
