@@ -1,6 +1,6 @@
 # elm-rust-template
 
-A convenient template for combining Elm and Rust in the front end.
+A convenient template for creating a progressive web app using Elm and Rust.
 
 # Set up
 ## The Rust Toolchain
@@ -51,7 +51,7 @@ This should prompt you for the new project's name.
 ## Build Rust into WebAssembly
 In the project root:
 ```
-cargo watch -i .gitignore -i "pkg/*" -s "wasm-pack build"
+cargo watch -i "pkg/*" -s "wasm-pack build"
 ```
 This should continuously watch for Rust code changes and compile the new version into WebAssembly.
 
@@ -102,18 +102,48 @@ Now you should see a `dist` folder within `www` similar to this:
 www
 ├── ...
 ├── dist
-    ├── 0.bootstrap.js
     ├── 1.bootstrap.js
     ├── 27911fde1b082c3d4.module.wasm
     ├── bootstrap.js
     ├── index.html
+    ├── ...
 ├── ...
 ```
+This template uses set all build processes to production mode so all assets including JavaScript and WebAssembly are optimized and minimized. 
 
 ## Publish to Github Pages
 Follow all the previous steps outlined in deployment instructions. Then push the `www/dist` folder to the `gh-pages` branch on GitHub.
 ```
 git subtree push --prefix www/dist origin gh-pages
+```
+
+## Customization
+### Logos
+This template by defaults uses the a combination of ico and png files to provide best logo resolutions for all popular platforms. Included logo files are:
+
+```
+www
+  ├── android-chrome-192x192.png
+  ├── android-chrome-512x512.png
+  ├── apple-touch-icon.png
+  ├── favicon-16x16.png
+  ├── favicon-32x32.png
+  ├── favicon.ico
+```
+To customize the logo used, go to https://favicon.io/ and generate your own logo files from text, image, or emoji. You are also welcome to user other logo generation tools but I found favicon.io easy and fast. Once you have the 6 files listed above, simply replace the originals and no further configurations are needed.
+
+### Theme color and background color
+Theme color specifies the color of the browser address bar. Background colors specifies the background color of the splash screen when the browser tries to load your app. You can change both of them in `www/manifest.json`:
+```json
+{
+  ...
+  "theme_color": "#f74c00",
+  "background_color": "#ffffff"
+}
+```
+You should also change the `theme-color` meta-tag in the `<head>` of `www/index.html` to match the value specified in `www/manifest.json`:
+```html
+<meta name="theme-color" content="#f74c00">
 ```
 
 # Examples using elm-rust-template
