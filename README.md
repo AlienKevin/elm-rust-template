@@ -21,6 +21,14 @@ Install cargo-generate with this command:
 cargo install cargo-generate
 ```
 
+## cargo-watch
+cargo-watch allows you to watch for code changes in Rust.
+
+Install cargo-watch with this command:
+```
+cargo install cargo-watch
+```
+
 ## npm
 npm is a package manager for JavaScript. We will use it to install and run a JavaScript bundler and development server. At the end of the tutorial, we will publish our compiled .wasm to the npm registry.
 
@@ -43,11 +51,12 @@ This should prompt you for the new project's name.
 ## Build Rust into WebAssembly
 In the project root:
 ```
-wasm-pack build
+cargo watch -i .gitignore -i "pkg/*" -s "wasm-pack build"
 ```
+This should continuously watch for Rust code changes and compile the new version into WebAssembly.
 
 ## Install web dependencies
-First, you need to be in the `www` directory:
+Open another terminal and navigate to the `www` directory:
 ```
 cd www
 ```
@@ -63,13 +72,17 @@ Watch for Elm file changes:
 ```
 npm run watch
 ```
-Open another terminal and spin up a dev server using webpack:
+Open another terminal, navigate to `www`
+```
+cd www
+```
+and spin up a dev server using webpack:
 ```
 npm run start
 ```
 Navigate your Web browser to http://localhost:8080/ and you should see the default page.
 
-Anytime you make changes and want them reflected on http://localhost:8080/, just **re-run** the `wasm-pack build` command within the root directory.
+All new changes will be automatically reflected on http://localhost:8080/.
 
 ## Deploy for a new release
 In the root directory.
