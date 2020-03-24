@@ -146,6 +146,13 @@ You should also change the `theme-color` meta-tag in the `<head>` of `www/index.
 <meta name="theme-color" content="#f74c00">
 ```
 
+# Porting existing Elm apps
+Currently there are no automated way but it's still very easy.
+
+1. Copy all your Elm files into the `www/src` directory
+2. Modify the `www/index.html` and `www/index.js` to configure ports and HTML layouts.
+3. No step 3 because you are all set now. Just follow the above steps in building and shipping your project.
+
 # Examples using elm-rust-template
 [Hack Assembler](https://github.com/AlienKevin/hack-assembler-web): An assembler for the Hack assembly language
 
