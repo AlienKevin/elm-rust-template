@@ -1,2 +1,3 @@
 [template]
+include = ["package.json"]
 exclude = ["*.ico", "*.png"]
