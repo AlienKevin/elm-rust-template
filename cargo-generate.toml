@@ -1,3 +1,2 @@
 [template]
-include = ["package.json"]
-exclude = ["*.ico", "*.png"]
+include = ["package.json", "manifest.json", "Cargo.toml", "index.html", "index.js"]
