@@ -3,6 +3,9 @@
 A convenient template for creating a progressive web app using Elm and Rust.
 
 # Set up
+## Elm
+Follow instructions [here](https://guide.elm-lang.org/install/) to install the Elm toolchain.
+
 ## The Rust Toolchain
 You will need the standard Rust toolchain, including rustup, rustc, and cargo.
 
