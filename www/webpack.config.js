@@ -11,7 +11,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new CopyWebpackPlugin(['index.html', '*.ico', '*.png', 'manifest.json']),
+    new CopyWebpackPlugin(['index.html', 'icons/', 'manifest.json']),
     new workboxPlugin.GenerateSW({
       swDest: 'sw.js',
       clientsClaim: true,
